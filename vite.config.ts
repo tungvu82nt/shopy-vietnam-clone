@@ -18,4 +18,8 @@ export default defineConfig({
     // Đảm bảo React được xử lý đúng cách
     jsxInject: `import React from 'react'`,
   },
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: ["5173-idg4n8nmx26sl6b0aex5q-c4c81a99.manusvm.computer", "5174-idg4n8nmx26sl6b0aex5q-c4c81a99.manusvm.computer"],
+  },
 });

@@ -55,10 +55,7 @@ export default function LoginPage() {
         toast.error(result.error.message || 'Đăng nhập thất bại')
         
         // Theo dõi đăng nhập thất bại
-        analytics.trackAuth('login_failed', {
-          method: 'email',
-          error: result.error.message || 'Login failed'
-        });
+        analytics.trackLogin("login_failed", { method: "email", error: result.error.message || "Login failed" });
         
         return
       }
@@ -66,10 +63,7 @@ export default function LoginPage() {
       toast.success('Đăng nhập thành công!')
       
       // Theo dõi đăng nhập thành công
-      analytics.trackAuth('login', {
-        method: 'email',
-        user_id: result.user?.id
-      });
+      analytics.trackLogin("login", { method: "email", user_id: result.user?.id });
       
       setLoginSuccess(true) // Đánh dấu đăng nhập thành công để useEffect xử lý chuyển hướng
       
@@ -77,9 +71,9 @@ export default function LoginPage() {
       toast.error(error.message || 'Đăng nhập thất bại')
       
       // Theo dõi lỗi đăng nhập
-      analytics.trackAuth('login_failed', {
-        method: 'email',
-        error: error.message || 'Unknown error'
+      analytics.trackLogin("login_failed", {
+        method: "email",
+        error: error.message || "Unknown error"
       });
       
     } finally {
