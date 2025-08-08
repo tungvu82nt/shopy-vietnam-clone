@@ -7,12 +7,12 @@ import React from 'react';
  */
 export function lazyImport<
   T extends React.ComponentType<any>,
-  I extends { [K2 in K]: T },
+  I extends Record<K, T>,
   K extends keyof I
->(factory: () => Promise<I>, name: K): I {
-  return Object.create({
+>(factory: () => Promise<I>, name: K): Pick<I, K> {
+  return {
     [name]: React.lazy(() => factory().then((module) => ({ default: module[name] }))),
-  });
+  } as Pick<I, K>;
 }
 
 /**
